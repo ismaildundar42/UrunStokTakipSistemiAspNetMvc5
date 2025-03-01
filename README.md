@@ -33,7 +33,7 @@ Bu proje, **ASP.NET MVC5** kullanılarak geliştirilmiş bir **Ürün Stok ve Pe
 ✅ **C#**  
 ✅ **Entity Framework**  
 ✅ **MSSQL**  
-✅ **Bootstrap 4** *(Önyüz tasarımı için)*  
+✅ **Bootstrap 5** *(Önyüz tasarımı için)*  
 
 ---
 
