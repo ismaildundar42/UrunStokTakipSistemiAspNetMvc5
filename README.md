@@ -1,51 +1,71 @@
-Ürün Stok ve Personel Takip Sistemi
-Bu proje, ASP.NET MVC5 kullanılarak geliştirilmiş bir Ürün Stok ve Personel Takip Sistemidir. Proje kapsamında, şirketlerin stok yönetimi, ürün takibi ve personel bilgilerini düzenli bir şekilde saklayabilmesi hedeflenmiştir.
+# 📦 Ürün Stok ve Personel Takip Sistemi
+Bu proje, **ASP.NET MVC5** kullanılarak geliştirilmiş bir **Ürün Stok ve Personel Takip Sistemi**dir. Şirketlerin stok yönetimi, ürün takibi ve personel bilgilerini düzenli bir şekilde saklayabilmesi hedeflenmiştir.
 
-Özellikler
-✔ Yetkilendirme ve Kimlik Doğrulama
+---
 
-Kullanıcı giriş/çıkış işlemleri
-Roller bazında yetkilendirme (Admin, Kullanıcı vb.)
-✔ Ürün ve Stok Yönetimi
+## 🚀 Özellikler
 
-Yeni ürün ekleme, güncelleme ve silme
-Stok miktarlarını takip etme
-Ürün kategorileri oluşturma
-✔ Personel Takibi
+### 🔐 Yetkilendirme ve Kimlik Doğrulama
+✔ Kullanıcı giriş/çıkış işlemleri  
+✔ Roller bazında yetkilendirme (**Admin, Kullanıcı vb.**)
 
-Personel bilgilerini ekleme, düzenleme ve listeleme
-Departman bazlı personel sınıflandırma
-✔ Dinamik Raporlama
+### 📦 Ürün ve Stok Yönetimi
+✔ Yeni ürün ekleme, güncelleme ve silme  
+✔ Stok miktarlarını takip etme  
+✔ Ürün kategorileri oluşturma  
 
-Ürün ve stok durumu hakkında raporlar oluşturma
-Satış ve envanter analizleri
-✔ Veritabanı Yönetimi
+### 👨‍💼 Personel Takibi
+✔ Personel bilgilerini ekleme, düzenleme ve listeleme  
+✔ Departman bazlı personel sınıflandırma  
 
-MSSQL ile veritabanı işlemleri
-Entity Framework ile veri modeli yönetimi
-Kullanılan Teknolojiler
-ASP.NET MVC5
-C#
-Entity Framework
-MSSQL
-Bootstrap 4 (Önyüz tasarımı için)
-Kurulum ve Çalıştırma
+### 📊 Dinamik Raporlama
+✔ Ürün ve stok durumu hakkında raporlar oluşturma  
+✔ Satış ve envanter analizleri  
 
-1.Projeyi Clone'layın
+### 🗄️ Veritabanı Yönetimi
+✔ **MSSQL** ile veritabanı işlemleri  
+✔ **Entity Framework** ile veri modeli yönetimi  
+
+---
+
+## 🛠️ Kullanılan Teknolojiler
+✅ **ASP.NET MVC5**  
+✅ **C#**  
+✅ **Entity Framework**  
+✅ **MSSQL**  
+✅ **Bootstrap 4** *(Önyüz tasarımı için)*  
+
+---
+
+## ⚙️ Kurulum ve Çalıştırma
+
+### 1️⃣ Projeyi Clone'layın
+```bash
 git clone https://github.com/kullanıcı_adı/stok-takip.git
 cd stok-takip
+```
 
-2.Veritabanını Yapılandırın
-appsettings.json veya Web.config içinde bağlantı stringini güncelleyin.
-MSSQL'de uygun bir veritabanı oluşturun ve migration işlemlerini çalıştırın:
+### 2️⃣ Veritabanını Yapılandırın
+- **appsettings.json** veya **Web.config** içinde bağlantı stringini güncelleyin.
+- MSSQL'de uygun bir veritabanı oluşturun ve **migration** işlemlerini çalıştırın:
+```bash
 Update-Database
+```
 
-3.Projeyi Çalıştırın
+### 3️⃣ Projeyi Çalıştırın
+```bash
 dotnet run
-veya Visual Studio üzerinden F5 tuşuyla projeyi başlatabilirsiniz.
+```
+veya **Visual Studio** üzerinden `F5` tuşuyla projeyi başlatabilirsiniz.
 
-Katkıda Bulunma
-Eğer projeye katkıda bulunmak isterseniz, lütfen bir pull request gönderin veya bir issue açarak görüşlerinizi paylaşın.
+---
+
+## 🤝 Katkıda Bulunma
+Eğer projeye katkıda bulunmak isterseniz, **pull request** gönderebilir veya bir **issue** açarak görüşlerinizi paylaşabilirsiniz.
+
+---
+
+⭐ **Projeyi beğendiyseniz, GitHub'da yıldız bırakmayı unutmayın!** ⭐
 
 ![image](https://github.com/user-attachments/assets/33bf0f79-2c1b-425b-8d6d-bbfe801b0320)
 ![image](https://github.com/user-attachments/assets/637ff3f8-a7a0-4fb6-90ef-5fc0433bd1d6)
