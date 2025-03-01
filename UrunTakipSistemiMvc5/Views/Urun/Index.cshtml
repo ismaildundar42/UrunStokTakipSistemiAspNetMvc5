@@ -1,0 +1,51 @@
+﻿@using UrunTakipSistemiMvc5.Models.Entitiy
+@model List<tbl_urunler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using(Html.BeginForm("Index","Urun",FormMethod.Get))
+            {
+                <p>
+                    Ürün Adı : @Html.TextBox("p")
+                    <input  type="submit" value="Ara"/>
+                </p>
+            }
+
+
+<h2>Ürünlerin Listesi</h2>
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>ÜRÜN ID</th>
+        <th>ÜRÜN AD</th>
+        <th>ÜRÜN MARKA</th>
+        <th>ÜRÜN STOK</th>
+        <th>ALIŞ FİYATI</th>
+        <th>SATIŞ FİYATI</th>
+        <th>ÜRÜN KATEGORİ</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.urun_id</td>
+            <td>@x.urun_ad</td>
+            <td>@x.urun_marka</td>
+            <td>@x.urun_stok</td>
+            <td>@x.alis_fiyat ₺</td>
+            <td>@x.satis_fiyat ₺</td>
+            <td>@x.tbl_kategoriler.kategori_ad</td>
+            <td><a href="/Urun/UrunSil/@x.urun_id" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Urun/UrunGetir/@x.urun_id" class="btn btn-success">Güncelle</a></td>
+        </tr>
+
+    }
+
+</table>
+
+<a href="/Urun/UrunEkle/" class="btn btn-primary">Yeni Ürün Ekle</a>

@@ -1,0 +1,31 @@
+﻿@model UrunTakipSistemiMvc5.Models.Entitiy.tbl_musteriler
+@{
+    ViewBag.Title = "MusteriGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("MusteriGuncelle", "Musteri", FormMethod.Post))
+{
+
+    <h2>Müşteri Bilgileri Güncelleme Sayfası</h2>
+    <br />
+    <label>Müşteri Id</label>
+    @Html.TextBoxFor(x => x.mus_id, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    <label>Müşteri Adı</label>
+    @Html.TextBoxFor(x => x.mus_ad, new { @class = "form-control" })
+    <br />
+    <label>Müşteri Soyadı</label>
+    @Html.TextBoxFor(x => x.mus_soyad, new { @class = "form-control" });
+    <br />
+    <label>Müşteri Şehri</label>
+    @Html.TextBoxFor(x => x.mus_sehir, new { @class = "form-control" });
+    <br />
+    <label>Müşteri Bakiyesi</label>
+    @Html.TextBoxFor(x => x.mus_bakiye, new { @class = "form-control" });
+    <br />
+    <button class="btn btn-warning">Güncelle</button>
+
+}
+
+

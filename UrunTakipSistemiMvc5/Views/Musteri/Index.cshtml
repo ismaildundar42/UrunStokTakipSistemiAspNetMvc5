@@ -1,0 +1,44 @@
+﻿@using UrunTakipSistemiMvc5.Models.Entitiy
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<tbl_musteriler> 
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Müşteri Listesi</h2>
+
+<table class="table table-bordered">
+
+
+    <tr>
+        <th>MÜŞTERİ ID</th>
+        <th>MÜŞTERİ AD</th>
+        <th>MÜŞTERİ SOYAD</th>
+        <th>MÜŞTERİ ŞEHİR</th>
+        <th>MÜŞTERİ BAKİYE</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+
+
+    @foreach(var x in Model)
+            {
+                <tr>
+                    <td>@x.mus_id</td>
+                    <td>@x.mus_ad</td>
+                    <td>@x.mus_soyad</td>
+                    <td>@x.mus_sehir</td>
+                    <td>@x.mus_bakiye ₺</td>
+                    <td><a href="/Musteri/MusteriSil/@x.mus_id" class="btn btn-danger">Sil</a></td>
+                    <td><a href="/Musteri/MusteriGetir/@x.mus_id" class="btn btn-success">Güncelle</a></td>
+                </tr>
+            }
+
+</table>
+
+@Html.PagedListPager((IPagedList)Model,sayfa => Url.Action("Index",new {sayfa}))
+
+
+<a href="/Musteri/MusteriEkle/" class="btn btn-primary">Yeni Müşteri Ekleme Sayfası</a>

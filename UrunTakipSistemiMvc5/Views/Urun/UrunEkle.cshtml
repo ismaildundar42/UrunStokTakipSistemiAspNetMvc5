@@ -1,0 +1,39 @@
+﻿@model UrunTakipSistemiMvc5.Models.Entitiy.tbl_urunler
+@{
+    ViewBag.Title = "UrunEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form method="post">
+
+    <h2>Ürün Ekleme Sayfası</h2>
+    <br />
+
+    <label>Ürün Adını Giriniz</label>
+    <input type="text" name="urun_ad" class="form-control" />
+    <br />
+
+    <label>Ürün Markasını Giriniz</label>
+    <input type="text" name="urun_marka" class="form-control" />
+    <br />
+
+    <label>Ürün Stokunu Giriniz</label>
+    <input type="text" name="urun_stok" class="form-control" />
+    <br />
+
+    <label>Ürün Alış Fiyatını Giriniz</label>
+    <input type="text" name="alis_fiyat" class="form-control" />
+    <br />
+
+    <label>Ürün Satış Fiyatını Giriniz</label>
+    <input type="text" name="satis_fiyat" class="form-control" />
+    <br />
+
+    <label>Ürün Kategorisini Giriniz</label>
+    @Html.DropDownListFor(x => x.tbl_kategoriler.kategori_id, (List<SelectListItem>)ViewBag.dropdeger, new {@class = "form-control"})
+    <br />
+
+    <button class="btn btn-success">Kaydet</button>
+
+</form>
+

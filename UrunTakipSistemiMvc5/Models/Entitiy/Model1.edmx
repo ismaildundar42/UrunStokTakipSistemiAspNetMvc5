@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DbMvcStokModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_adminler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullaniciAdi" Type="varchar" MaxLength="50" />
+          <Property Name="sifre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_kategoriler">
+          <Key>
+            <PropertyRef Name="kategori_id" />
+          </Key>
+          <Property Name="kategori_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategori_ad" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="tbl_musteriler">
+          <Key>
+            <PropertyRef Name="mus_id" />
+          </Key>
+          <Property Name="mus_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mus_ad" Type="varchar" MaxLength="50" />
+          <Property Name="mus_soyad" Type="varchar" MaxLength="50" />
+          <Property Name="mus_sehir" Type="varchar" MaxLength="50" />
+          <Property Name="mus_bakiye" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="mus_durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_personeller">
+          <Key>
+            <PropertyRef Name="per_id" />
+          </Key>
+          <Property Name="per_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="per_ad" Type="varchar" MaxLength="50" />
+          <Property Name="per_soyad" Type="varchar" MaxLength="50" />
+          <Property Name="per_departman" Type="varchar" MaxLength="50" />
+          <Property Name="per_durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_satislar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urun" Type="int" />
+          <Property Name="personel" Type="int" />
+          <Property Name="musteri" Type="int" />
+          <Property Name="fiyat" Type="int" />
+          <Property Name="tarih" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="tbl_urunler">
+          <Key>
+            <PropertyRef Name="urun_id" />
+          </Key>
+          <Property Name="urun_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urun_ad" Type="varchar" MaxLength="50" />
+          <Property Name="urun_marka" Type="varchar" MaxLength="50" />
+          <Property Name="urun_stok" Type="smallint" />
+          <Property Name="alis_fiyat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="satis_fiyat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="urun_kategori" Type="int" />
+          <Property Name="urun_durum" Type="bit" />
+        </EntityType>
+        <Association Name="FK_tbl_satislar_tbl_musteriler">
+          <End Role="tbl_musteriler" Type="Self.tbl_musteriler" Multiplicity="0..1" />
+          <End Role="tbl_satislar" Type="Self.tbl_satislar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_musteriler">
+              <PropertyRef Name="mus_id" />
+            </Principal>
+            <Dependent Role="tbl_satislar">
+              <PropertyRef Name="musteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_satislar_tbl_personeller">
+          <End Role="tbl_personeller" Type="Self.tbl_personeller" Multiplicity="0..1" />
+          <End Role="tbl_satislar" Type="Self.tbl_satislar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_personeller">
+              <PropertyRef Name="per_id" />
+            </Principal>
+            <Dependent Role="tbl_satislar">
+              <PropertyRef Name="personel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_satislar_tbl_urunler">
+          <End Role="tbl_urunler" Type="Self.tbl_urunler" Multiplicity="0..1" />
+          <End Role="tbl_satislar" Type="Self.tbl_satislar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_urunler">
+              <PropertyRef Name="urun_id" />
+            </Principal>
+            <Dependent Role="tbl_satislar">
+              <PropertyRef Name="urun" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_urunler_tbl_kategoriler">
+          <End Role="tbl_kategoriler" Type="Self.tbl_kategoriler" Multiplicity="0..1" />
+          <End Role="tbl_urunler" Type="Self.tbl_urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_kategoriler">
+              <PropertyRef Name="kategori_id" />
+            </Principal>
+            <Dependent Role="tbl_urunler">
+              <PropertyRef Name="urun_kategori" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbMvcStokModelStoreContainer">
+          <EntitySet Name="tbl_adminler" EntityType="Self.tbl_adminler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_kategoriler" EntityType="Self.tbl_kategoriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_musteriler" EntityType="Self.tbl_musteriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_personeller" EntityType="Self.tbl_personeller" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_satislar" EntityType="Self.tbl_satislar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_urunler" EntityType="Self.tbl_urunler" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbl_satislar_tbl_musteriler" Association="Self.FK_tbl_satislar_tbl_musteriler">
+            <End Role="tbl_musteriler" EntitySet="tbl_musteriler" />
+            <End Role="tbl_satislar" EntitySet="tbl_satislar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_satislar_tbl_personeller" Association="Self.FK_tbl_satislar_tbl_personeller">
+            <End Role="tbl_personeller" EntitySet="tbl_personeller" />
+            <End Role="tbl_satislar" EntitySet="tbl_satislar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_satislar_tbl_urunler" Association="Self.FK_tbl_satislar_tbl_urunler">
+            <End Role="tbl_urunler" EntitySet="tbl_urunler" />
+            <End Role="tbl_satislar" EntitySet="tbl_satislar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_urunler_tbl_kategoriler" Association="Self.FK_tbl_urunler_tbl_kategoriler">
+            <End Role="tbl_kategoriler" EntitySet="tbl_kategoriler" />
+            <End Role="tbl_urunler" EntitySet="tbl_urunler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbMvcStokModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_kategoriler">
+          <Key>
+            <PropertyRef Name="kategori_id" />
+          </Key>
+          <Property Name="kategori_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategori_ad" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_urunler" Relationship="Self.FK_tbl_urunler_tbl_kategoriler" FromRole="tbl_kategoriler" ToRole="tbl_urunler" />
+        </EntityType>
+        <EntityType Name="tbl_musteriler">
+          <Key>
+            <PropertyRef Name="mus_id" />
+          </Key>
+          <Property Name="mus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mus_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mus_soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mus_sehir" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mus_bakiye" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="tbl_satislar" Relationship="Self.FK_tbl_satislar_tbl_musteriler" FromRole="tbl_musteriler" ToRole="tbl_satislar" />
+          <Property Name="mus_durum" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_personeller">
+          <Key>
+            <PropertyRef Name="per_id" />
+          </Key>
+          <Property Name="per_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="per_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="per_soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="per_departman" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbl_satislar" Relationship="Self.FK_tbl_satislar_tbl_personeller" FromRole="tbl_personeller" ToRole="tbl_satislar" />
+          <Property Name="per_durum" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_satislar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urun" Type="Int32" />
+          <Property Name="personel" Type="Int32" />
+          <Property Name="musteri" Type="Int32" />
+          <Property Name="fiyat" Type="Int32" />
+          <Property Name="tarih" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tbl_musteriler" Relationship="Self.FK_tbl_satislar_tbl_musteriler" FromRole="tbl_satislar" ToRole="tbl_musteriler" />
+          <NavigationProperty Name="tbl_personeller" Relationship="Self.FK_tbl_satislar_tbl_personeller" FromRole="tbl_satislar" ToRole="tbl_personeller" />
+          <NavigationProperty Name="tbl_urunler" Relationship="Self.FK_tbl_satislar_tbl_urunler" FromRole="tbl_satislar" ToRole="tbl_urunler" />
+        </EntityType>
+        <EntityType Name="tbl_urunler">
+          <Key>
+            <PropertyRef Name="urun_id" />
+          </Key>
+          <Property Name="urun_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urun_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="urun_marka" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="urun_stok" Type="Int16" />
+          <Property Name="alis_fiyat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="satis_fiyat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="urun_kategori" Type="Int32" />
+          <Property Name="urun_durum" Type="Boolean" />
+          <NavigationProperty Name="tbl_kategoriler" Relationship="Self.FK_tbl_urunler_tbl_kategoriler" FromRole="tbl_urunler" ToRole="tbl_kategoriler" />
+          <NavigationProperty Name="tbl_satislar" Relationship="Self.FK_tbl_satislar_tbl_urunler" FromRole="tbl_urunler" ToRole="tbl_satislar" />
+        </EntityType>
+        <Association Name="FK_tbl_urunler_tbl_kategoriler">
+          <End Role="tbl_kategoriler" Type="Self.tbl_kategoriler" Multiplicity="0..1" />
+          <End Role="tbl_urunler" Type="Self.tbl_urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_kategoriler">
+              <PropertyRef Name="kategori_id" />
+            </Principal>
+            <Dependent Role="tbl_urunler">
+              <PropertyRef Name="urun_kategori" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_satislar_tbl_musteriler">
+          <End Role="tbl_musteriler" Type="Self.tbl_musteriler" Multiplicity="0..1" />
+          <End Role="tbl_satislar" Type="Self.tbl_satislar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_musteriler">
+              <PropertyRef Name="mus_id" />
+            </Principal>
+            <Dependent Role="tbl_satislar">
+              <PropertyRef Name="musteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_satislar_tbl_personeller">
+          <End Role="tbl_personeller" Type="Self.tbl_personeller" Multiplicity="0..1" />
+          <End Role="tbl_satislar" Type="Self.tbl_satislar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_personeller">
+              <PropertyRef Name="per_id" />
+            </Principal>
+            <Dependent Role="tbl_satislar">
+              <PropertyRef Name="personel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbl_satislar_tbl_urunler">
+          <End Role="tbl_urunler" Type="Self.tbl_urunler" Multiplicity="0..1" />
+          <End Role="tbl_satislar" Type="Self.tbl_satislar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_urunler">
+              <PropertyRef Name="urun_id" />
+            </Principal>
+            <Dependent Role="tbl_satislar">
+              <PropertyRef Name="urun" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbMvcStokEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_kategoriler" EntityType="Self.tbl_kategoriler" />
+          <EntitySet Name="tbl_musteriler" EntityType="Self.tbl_musteriler" />
+          <EntitySet Name="tbl_personeller" EntityType="Self.tbl_personeller" />
+          <EntitySet Name="tbl_satislar" EntityType="Self.tbl_satislar" />
+          <EntitySet Name="tbl_urunler" EntityType="Self.tbl_urunler" />
+          <AssociationSet Name="FK_tbl_urunler_tbl_kategoriler" Association="Self.FK_tbl_urunler_tbl_kategoriler">
+            <End Role="tbl_kategoriler" EntitySet="tbl_kategoriler" />
+            <End Role="tbl_urunler" EntitySet="tbl_urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_satislar_tbl_musteriler" Association="Self.FK_tbl_satislar_tbl_musteriler">
+            <End Role="tbl_musteriler" EntitySet="tbl_musteriler" />
+            <End Role="tbl_satislar" EntitySet="tbl_satislar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_satislar_tbl_personeller" Association="Self.FK_tbl_satislar_tbl_personeller">
+            <End Role="tbl_personeller" EntitySet="tbl_personeller" />
+            <End Role="tbl_satislar" EntitySet="tbl_satislar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_satislar_tbl_urunler" Association="Self.FK_tbl_satislar_tbl_urunler">
+            <End Role="tbl_urunler" EntitySet="tbl_urunler" />
+            <End Role="tbl_satislar" EntitySet="tbl_satislar" />
+          </AssociationSet>
+          <EntitySet Name="tbl_adminler" EntityType="DbMvcStokModel.tbl_adminler" />
+        </EntityContainer>
+        <EntityType Name="tbl_adminler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbMvcStokModelStoreContainer" CdmEntityContainer="DbMvcStokEntities1">
+          <EntitySetMapping Name="tbl_kategoriler">
+            <EntityTypeMapping TypeName="DbMvcStokModel.tbl_kategoriler">
+              <MappingFragment StoreEntitySet="tbl_kategoriler">
+                <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+                <ScalarProperty Name="kategori_ad" ColumnName="kategori_ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_musteriler">
+            <EntityTypeMapping TypeName="DbMvcStokModel.tbl_musteriler">
+              <MappingFragment StoreEntitySet="tbl_musteriler">
+                <ScalarProperty Name="mus_durum" ColumnName="mus_durum" />
+                <ScalarProperty Name="mus_id" ColumnName="mus_id" />
+                <ScalarProperty Name="mus_ad" ColumnName="mus_ad" />
+                <ScalarProperty Name="mus_soyad" ColumnName="mus_soyad" />
+                <ScalarProperty Name="mus_sehir" ColumnName="mus_sehir" />
+                <ScalarProperty Name="mus_bakiye" ColumnName="mus_bakiye" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_personeller">
+            <EntityTypeMapping TypeName="DbMvcStokModel.tbl_personeller">
+              <MappingFragment StoreEntitySet="tbl_personeller">
+                <ScalarProperty Name="per_durum" ColumnName="per_durum" />
+                <ScalarProperty Name="per_id" ColumnName="per_id" />
+                <ScalarProperty Name="per_ad" ColumnName="per_ad" />
+                <ScalarProperty Name="per_soyad" ColumnName="per_soyad" />
+                <ScalarProperty Name="per_departman" ColumnName="per_departman" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_satislar">
+            <EntityTypeMapping TypeName="DbMvcStokModel.tbl_satislar">
+              <MappingFragment StoreEntitySet="tbl_satislar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="urun" ColumnName="urun" />
+                <ScalarProperty Name="personel" ColumnName="personel" />
+                <ScalarProperty Name="musteri" ColumnName="musteri" />
+                <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_urunler">
+            <EntityTypeMapping TypeName="DbMvcStokModel.tbl_urunler">
+              <MappingFragment StoreEntitySet="tbl_urunler">
+                <ScalarProperty Name="urun_id" ColumnName="urun_id" />
+                <ScalarProperty Name="urun_ad" ColumnName="urun_ad" />
+                <ScalarProperty Name="urun_marka" ColumnName="urun_marka" />
+                <ScalarProperty Name="urun_stok" ColumnName="urun_stok" />
+                <ScalarProperty Name="alis_fiyat" ColumnName="alis_fiyat" />
+                <ScalarProperty Name="satis_fiyat" ColumnName="satis_fiyat" />
+                <ScalarProperty Name="urun_kategori" ColumnName="urun_kategori" />
+                <ScalarProperty Name="urun_durum" ColumnName="urun_durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_adminler">
+            <EntityTypeMapping TypeName="DbMvcStokModel.tbl_adminler">
+              <MappingFragment StoreEntitySet="tbl_adminler">
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+                <ScalarProperty Name="kullaniciAdi" ColumnName="kullaniciAdi" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,19 @@
+﻿@model UrunTakipSistemiMvc5.Models.Entitiy.tbl_kategoriler
+
+@{
+    ViewBag.Title = "KategoriEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form method="post">
+
+    <h2>Kategori Ekleme Sayfası</h2>
+    <br />
+
+    <label>Kategori Adını Giriniz</label>
+    <input type="text" name="kategori_ad" class="form-control" />
+    <br />
+    <button class="btn btn-success">Kaydet</button>
+
+</form>
+

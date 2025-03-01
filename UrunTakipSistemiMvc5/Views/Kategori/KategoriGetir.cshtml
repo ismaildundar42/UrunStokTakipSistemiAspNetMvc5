@@ -1,0 +1,20 @@
+﻿@model UrunTakipSistemiMvc5.Models.Entitiy.tbl_kategoriler
+@{
+    ViewBag.Title = "KategoriGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("KategoriGuncelle", "Kategori", FormMethod.Post))
+{
+
+    <h2>Kategori Güncelleme Sayfası</h2>
+    <br />
+    <label>Kategori Id</label>
+    @Html.TextBoxFor(x => x.kategori_id, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    <label>Kategori Adı</label>
+    @Html.TextBoxFor(x => x.kategori_ad, new { @class = "form-control" });
+    <br />
+    <button class="btn btn-warning">Güncelle</button>
+
+}

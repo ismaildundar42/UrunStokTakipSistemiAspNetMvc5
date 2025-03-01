@@ -1,0 +1,38 @@
+﻿@model UrunTakipSistemiMvc5.Models.Entitiy.tbl_musteriler
+
+@{
+    ViewBag.Title = "MusteriEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form method="post">
+
+    <h2>Müşteri Ekleme Sayfası</h2>
+    <br />
+
+    <label>Müşteri Adını Giriniz</label>
+    <input type="text" name="mus_ad" class="form-control" />
+    @Html.ValidationMessageFor(x => x.mus_ad, "",new {@style = "color:red"})
+    <br />
+
+    <label>Müşteri Soyadını Giriniz</label>
+    <input type="text" name="mus_soyad" class="form-control" />
+    @Html.ValidationMessageFor(x => x.mus_soyad, "", new { @style = "color:red" })
+    <br />
+
+    <label>Müşteri Şehrini Giriniz</label>
+    <input type="text" name="mus_sehir" class="form-control" />
+    @Html.ValidationMessageFor(x => x.mus_sehir, "", new { @style = "color:red" })
+    <br />
+
+    <label>Müşteri Bakiyesini Giriniz</label>
+    <input type="number" name="mus_bakiye" class="form-control" />
+    @Html.ValidationMessageFor(x => x.mus_bakiye, "", new { @style = "color:red" })
+    <br />
+
+
+    <button class="btn btn-success">Kaydet</button>
+
+</form>
+
+

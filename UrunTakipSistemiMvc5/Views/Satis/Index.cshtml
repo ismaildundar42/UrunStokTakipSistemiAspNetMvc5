@@ -1,0 +1,37 @@
+﻿@using UrunTakipSistemiMvc5.Models.Entitiy
+@model List<tbl_satislar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Yapılan Satışların Listesi</h2>
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>SATIŞ ID</th>
+        <th>SATILAN ÜRÜN</th>
+        <th>SATAN PERSONEL</th>
+        <th>MÜŞTERİ</th>
+        <th>SATIŞ FİYATI</th>
+        <th>TARİH</th>
+    </tr>
+
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.id</td>
+            <td>@x.tbl_urunler.urun_ad</td>
+            <td>@x.tbl_personeller.per_ad @x.tbl_personeller.per_soyad</td>
+            <td>@x.tbl_musteriler.mus_ad @x.tbl_musteriler.mus_soyad </td>
+            <td>@x.fiyat ₺</td>
+            <td>@x.tarih</td>
+        </tr>
+
+    }
+
+</table>
+
+<a href="/Satis/SatisEkle/" class="btn btn-primary">Yeni Ürün Satışı Yap</a>
+

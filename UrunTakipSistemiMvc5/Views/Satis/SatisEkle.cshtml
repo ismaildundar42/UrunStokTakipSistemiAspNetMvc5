@@ -1,0 +1,32 @@
+﻿@model UrunTakipSistemiMvc5.Models.Entitiy.tbl_satislar
+@{
+    ViewBag.Title = "SatisEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form method="post">
+
+    <h2>Satış Yapma Sayfası</h2>
+    <br />
+
+    <label>Ürün</label>
+    @Html.DropDownListFor(x => x.tbl_urunler.urun_id, (List<SelectListItem>)ViewBag.dropdeger1, new { @class = "form-control" })
+    <br />
+
+    <label>Satış Yapan Personel</label>
+    @Html.DropDownListFor(x => x.tbl_personeller.per_id, (List<SelectListItem>)ViewBag.dropdeger2, new { @class = "form-control" })
+    <br />
+
+    <label>Müşteri</label>
+    @Html.DropDownListFor(x => x.tbl_musteriler.mus_id, (List<SelectListItem>)ViewBag.dropdeger3, new { @class = "form-control" })
+    <br />
+
+    <label>Ürün Fiyat</label>
+    <input type="number" name="fiyat" class="form-control" />
+    <br />
+
+    <button class="btn btn-success">Satış Yap</button>
+
+</form>
+
+
